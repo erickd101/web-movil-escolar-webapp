@@ -166,7 +166,6 @@ export class RegistroMateriasComponent implements OnInit {
       minutes = minutes.padStart(2, '0');
 
       const formattedTime = `${hours}:${minutes}:00`;
-      console.log("DEBUG - Hora convertida:", formattedTime);
 
       return formattedTime;
     } catch (error) {
@@ -247,7 +246,6 @@ export class RegistroMateriasComponent implements OnInit {
         }
     }
 
-    console.log("Array días actualizado: ", this.materia.dias_json);
   }
 
   public revisarSeleccionDia(diaValue: string){

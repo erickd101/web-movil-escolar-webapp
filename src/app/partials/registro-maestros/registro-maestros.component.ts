@@ -189,24 +189,20 @@ export class RegistroMaestrosComponent implements OnInit {
 
   //Función para detectar el cambio de fecha
  public changeFecha(event: any){
-  console.log("Evento de fecha:", event);
 
   if (event.value) {
-    // Formatear la fecha como YYYY-MM-DD para Django
+    // Formatear la fecha
     const date = new Date(event.value);
     const year = date.getFullYear();
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const day = date.getDate().toString().padStart(2, '0');
 
     this.maestro.fechaN = `${year}-${month}-${day}`;
-    console.log("Fecha formateada para Django:", this.maestro.fechaN);
   }
 }
 
 public checkboxChange(event: any) {
-    console.log("Checkbox event:", event);
-    console.log("Checkbox value:", event.source.value);
-    console.log("Checkbox checked:", event.checked);
+   
 
     // Asegurar que materias_json sea un array
     if (!this.maestro.materias_json) {
@@ -219,28 +215,23 @@ public checkboxChange(event: any) {
         // Agregar si no existe
         if (!this.maestro.materias_json.includes(materiaValue)) {
             this.maestro.materias_json.push(materiaValue);
-            console.log(`Materia ${materiaValue} agregada`);
         }
     } else {
         // Remover si existe
         const index = this.maestro.materias_json.indexOf(materiaValue);
         if (index > -1) {
             this.maestro.materias_json.splice(index, 1);
-            console.log(`Materia ${materiaValue} removida`);
         }
     }
 
-    console.log("Array materias actualizado: ", this.maestro.materias_json);
 }
 
 
 
   public revisarSeleccion(materiaValue: string){
-    console.log(` Revisando selección para materia ${materiaValue}`);
-    console.log(` materias_json actual:`, this.maestro.materias_json);
+
 
     if (!this.maestro.materias_json || !Array.isArray(this.maestro.materias_json)) {
-        console.log(`No hay materias_json o no es array`);
         return false;
     }
 
@@ -250,7 +241,6 @@ public checkboxChange(event: any) {
         materia.toString() === materiaValueStr
     );
 
-    console.log(`Resultado para ${materiaValue}: ${existe}`);
     return existe;
   }
 

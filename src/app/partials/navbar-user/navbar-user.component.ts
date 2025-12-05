@@ -31,7 +31,6 @@ export class NavbarUserComponent implements OnInit {
   public mobileOpen: boolean = false;
   public userRole: string = '';
 
-  // Estas variables se utilizarán por si se habilita el tema oscuro
   paletteMode: 'light' | 'dark' = 'light';
   colorPalettes: ColorPalettes = {
     light: {

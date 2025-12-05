@@ -92,7 +92,6 @@ public registrar(): boolean {
   //Consumir servicio para registrar administradores
   this.administradoresService.registrarAdmin(this.admin).subscribe({
     next: (response:any) => {
-      //Aqui va la ejecucion del servicio si todo es correcto
       alert('Administrador creado con exito');
       console.log("Admin registrado",response);
 
