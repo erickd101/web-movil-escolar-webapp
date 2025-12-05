@@ -1,0 +1,38 @@
+<div class="wrapper">
+  <div class="reg-shell">
+    <!-- Tarjeta de información -->
+    <mat-card class="role-card">
+      <mat-card-header class="role-card-header">
+        <div class="actions-header-colum">
+          <mat-card-title class="title-card">
+            {{ editar ? 'Editar Materia' : 'Registro de Materia' }}
+          </mat-card-title>
+          <mat-card-subtitle class="subtitle-card">
+            {{ editar ? 'Modifica los datos de la materia' : 'Ingresa los datos de la materia para registrarla en el sistema' }}
+          </mat-card-subtitle>
+        </div>
+        <!-- Botón regresar -->
+        <div class="actions-row">
+          <button mat-icon-button class="back-btn" (click)="goBack()">
+            <mat-icon class="back-icon">arrow_back</mat-icon>
+          </button>
+        </div>
+      </mat-card-header>
+    </mat-card>
+
+    <!-- Formulario de registro/edición de materia -->
+    <div class="forms-area">
+      <!-- UNA SOLA INSTANCIA, igual que en usuarios -->
+      <app-registro-materias
+        *ngIf="!editar || (editar && materia.id)"
+        [rol]="rol"
+        [datos_materia]="editar ? materia : null">  <!-- ¡ESTO ES CLAVE! -->
+      </app-registro-materias>
+
+      <!-- Loading mientras carga (solo en modo edición) -->
+      <div *ngIf="editar && !materia.id" class="loading">
+        <p>Cargando datos de la materia...</p>
+      </div>
+    </div>
+  </div>
+</div>

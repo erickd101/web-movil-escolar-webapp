@@ -1,0 +1,85 @@
+<mat-sidenav-container class="sidebar-container">
+  <mat-sidenav [opened]="!isMobileView || mobileOpen" [mode]="isMobileView ? 'over' : 'side'" class="sidebar"
+    (closedStart)="closeSidebar()" [disableClose]="!isMobileView">
+    <nav>
+      <ul class="sidebar-list">
+        <!-- Inicio - Available for admin and teachers only -->
+        <li *ngIf="canSeeHomeItem()" routerLink="/home" routerLinkActive="active" (click)="closeSidebar()">
+          <mat-icon>home</mat-icon>
+          <span>Inicio</span>
+        </li>
+
+
+        <!-- <li *ngIf="canSeeRegisterItem()" routerLink="/registro-usuarios" routerLinkActive="active"
+          (click)="closeSidebar()">
+          <mat-icon>person_add</mat-icon>
+          <span>Registro</span>
+        </li> -->
+        <li *ngIf="canSeeRegisterItem()" routerLinkActive="active" class="scoop-navbar-item dropdown-trigger" [matMenuTriggerFor]="menu">
+          <span class="material-icons">person_add</span>
+          <span class="scoop-navbar-text">Registro</span>
+
+          <mat-menu #menu="matMenu" class="register-menu">
+            <button mat-menu-item [routerLink]="['/registro-usuarios']"
+                [queryParams]="{rol: 'Administrador'}"
+                (click)="closeSidebar()">
+              <span>Administrador</span>
+            </button>
+            <button mat-menu-item [routerLink]="['/registro-usuarios']"
+                [queryParams]="{rol: 'Maestro'}"
+                (click)="closeSidebar()">
+              <span>Maestro</span>
+            </button>
+            <button mat-menu-item [routerLink]="['/registro-usuarios']"
+                [queryParams]="{rol: 'Alumno'}"
+                (click)="closeSidebar()">
+              <span>Alumno</span>
+            </button>
+            <button *ngIf="canSeeAdminItems()" mat-menu-item [routerLink]="['/registro-materias']"
+                (click)="closeSidebar()">
+              <span>Materia</span>
+            </button>
+          </mat-menu>
+        </li>
+
+
+        <!-- Admins - Only for administrators -->
+        <li *ngIf="canSeeAdminItems()" routerLink="/administrador" routerLinkActive="active" (click)="closeSidebar()">
+          <mat-icon>admin_panel_settings</mat-icon>
+          <span>Admins</span>
+        </li>
+
+        <!-- Maestros-->
+        <li *ngIf="canSeeAdminItems()" routerLink="/maestros" routerLinkActive="active" (click)="closeSidebar()">
+          <mat-icon>people</mat-icon>
+          <span>Maestros</span>
+        </li>
+
+        <!-- Alumnos - Available for all users -->
+        <li *ngIf="canSeeStudentItems()" routerLink="/alumnos" routerLinkActive="active" (click)="closeSidebar()">
+          <mat-icon>school</mat-icon>
+          <span>Alumnos</span>
+        </li>
+
+        <!-- Gráficas - Available for all users -->
+        <li *ngIf="canSeeStudentItems()" routerLink="/graficas" routerLinkActive="active" (click)="closeSidebar()">
+          <mat-icon>bar_chart</mat-icon>
+          <span>Gráficas</span>
+        </li>
+
+        <!-- Eventos Académicos - Available for administrators and teachers -->
+        <li *ngIf="canSeeTeacherItems()" routerLink="/eventos-academicos" routerLinkActive="active" class="eventos-academicos" (click)="closeSidebar()">
+          <mat-icon>event</mat-icon>
+          <span>Eventos Académicos</span>
+        </li>
+      </ul>
+      <button mat-flat-button color="warn" class="logout-btn" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Cerrar sesión</span>
+      </button>
+    </nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <!-- Main content goes here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>
