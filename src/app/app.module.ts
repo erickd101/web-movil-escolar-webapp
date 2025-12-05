@@ -56,6 +56,7 @@ import { RegistroMateriasComponent } from './partials/registro-materias/registro
 import { MateriasScreenComponent } from './screens/materias-screen/materias-screen.component';
 import { RegistroMateriasScreenComponent } from './screens/registro-materias-screen/registro-materias-screen.component';
 import { EditarModalComponent } from './modals/editar-modal/editar-modal.component';
+import { Router } from '@angular/router';
 
 
 
@@ -110,11 +111,14 @@ import { EditarModalComponent } from './modals/editar-modal/editar-modal.compone
     MatMenuModule,
     NgxMaterialTimepickerModule,
 
+
   ],
   exports:[ MatButtonModule,
     MatDividerModule,
     MatIconModule,
-  MatMenuModule],
+  MatMenuModule,
+  ],
+
   providers: [CookieService,
               provideNgxMask(),
               {provide: MAT_DATE_LOCALE, useValue: 'es-MX'},
